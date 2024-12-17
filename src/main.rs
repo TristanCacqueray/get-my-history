@@ -167,10 +167,10 @@ fn main() -> Result<()> {
     let args = Cli::parse();
     let access_token = get_access_token(&args)?;
 
-    let account_id = if let Some(ref account_id) = args.account_id {
-        account_id
+    let account_id: String = if let Some(ref account_id) = args.account_id {
+        account_id.to_string()
     } else {
-        &get_account_id(&args.host, &access_token)?
+        get_account_id(&args.host, &access_token)?
     };
 
     let mut statuses: Vec<serde_json::Value> = vec![];
@@ -193,7 +193,7 @@ fn main() -> Result<()> {
     statuses.extend(get_statuses(
         &args.host,
         &access_token,
-        account_id,
+        &account_id,
         max_id.as_deref(),
     )?);
     statuses.sort_by(|a, b| compare_key("created_at", a, b));
