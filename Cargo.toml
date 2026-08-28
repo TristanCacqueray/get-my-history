@@ -1,7 +1,7 @@
 [package]
 name = "get-my-history"
 version = "0.1.14"
-edition = "2021"
+edition = "2024"
 repository = "https://github.com/miikka/get-my-history"
 license = "MIT"
 publish = false
